@@ -1,0 +1,24 @@
+{
+  "name": "todo-list2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DR1FTERxd/todo-list2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DR1FTERxd/todo-list2/issues"
+  },
+  "homepage": "https://github.com/DR1FTERxd/todo-list2#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.0-alpha1",
+    "webpack": "^5.76.1",
+    "webpack-cli": "^5.0.1"
+  }
+}
