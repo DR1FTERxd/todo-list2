@@ -1,17 +1,26 @@
-let myProjects = [];
-let newproject;
 
+
+import { todo } from "./todo";
+
+
+
+let myProjects = [];
+todo = []
+console.log(todo)
 const addprjct = document.querySelector("#addBtn");
 addprjct.addEventListener("click", addToProjectList);
 
 
 export default class Project{
-    constructor(name, description){
-        this.name = name
+    constructor(Dname, description){
+        this.Dname = Dname
         this.description = description
-    }
+        this.todo = todo ;
+        }
+    
 }
 
+// todos sujungti su projectu  
 export function getFromInput(){
      const name = document.getElementById("names").value
      const Pdescription = document.getElementById("description").value
@@ -23,7 +32,39 @@ export function addToProjectList(event) {
     const newproject = getFromInput();
     myProjects.push(newproject)
     console.log(myProjects)
-    console.log(newproject)
+    
+    render()
 }
 
 
+export function render() {
+    const display = document.querySelector('.panel');
+    const projects = document.querySelectorAll('.project');
+    projects.forEach(project => display.removeChild(project))
+
+    for (let i=0; i<myProjects.length; i++){
+        showing(myProjects[i])
+    }
+
+}
+
+export function showing(item) {
+    const projects = document.querySelector('.panel')
+    const project = document.createElement('div')
+    const nam = document.createElement("h2")
+    const descript = document.createElement("h4")
+
+    project.classList.add('project')
+    project.setAttribute('id', myProjects.indexOf(item))
+
+    nam.textContent = item.name
+    nam.classList.add("name")
+    project.appendChild(nam)
+
+    descript.textContent = item.description
+    descript.classList.add("description")
+    project.appendChild(descript)
+
+    projects.appendChild(project)
+
+}
