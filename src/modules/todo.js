@@ -1,5 +1,4 @@
 export let todo = [];
-
 const addtodo = document.querySelector("#addTodo");
 addtodo.addEventListener("click", addToTodos);
 
@@ -21,7 +20,10 @@ export function getTodoInputs(){
 export function addToTodos(event){
     event.preventDefault();
     const newtodo = getTodoInputs()
+    let actv = document.querySelectorAll('.project active')
+    actv.push(newtodo)
     todo.push(newtodo)
-    console.log(newtodo)
-    //console.log(todo)
+    //console.log(newtodo)
+    console.log(todo)
+    
 }

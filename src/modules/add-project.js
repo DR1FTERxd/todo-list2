@@ -1,11 +1,11 @@
-
-
+import Todo from "./todo";
 import { todo } from "./todo";
+import { getTodoInputs } from "./todo";
+import { addToTodos } from "./todo";
 
 
 
-let myProjects = [];
-todo = []
+const myProjects = [];
 console.log(todo)
 const addprjct = document.querySelector("#addBtn");
 addprjct.addEventListener("click", addToProjectList);
@@ -15,7 +15,7 @@ export default class Project{
     constructor(Dname, description){
         this.Dname = Dname
         this.description = description
-        this.todo = todo ;
+        this.todo = todo;
         }
     
 }
@@ -31,33 +31,49 @@ export function addToProjectList(event) {
     event.preventDefault();
     const newproject = getFromInput();
     myProjects.push(newproject)
-    console.log(myProjects)
-    
     render()
+    console.log(myProjects)
 }
 
 
 export function render() {
     const display = document.querySelector('.panel');
-    const projects = document.querySelectorAll('.project');
+    let projects = document.querySelectorAll('.project');
     projects.forEach(project => display.removeChild(project))
 
     for (let i=0; i<myProjects.length; i++){
-        showing(myProjects[i])
-    }
-
+       showing(myProjects[i])
+   }
 }
+
+
+
+
 
 export function showing(item) {
     const projects = document.querySelector('.panel')
-    const project = document.createElement('div')
+    let project = document.createElement('div')
     const nam = document.createElement("h2")
     const descript = document.createElement("h4")
 
     project.classList.add('project')
     project.setAttribute('id', myProjects.indexOf(item))
+    
+    
+    
 
-    nam.textContent = item.name
+    project.addEventListener("click", function() {
+  // remove active class from all elements with the class "active"
+    var activeProject = document.querySelectorAll(".active");
+    for (var i = 0; i < activeProject.length; i++) {
+        activeProject[i].classList.remove("active");
+    }
+  
+  // add the active class to the clicked element
+  project.classList.add("active");
+});
+
+    nam.textContent = item.Dname
     nam.classList.add("name")
     project.appendChild(nam)
 
