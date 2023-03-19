@@ -15,15 +15,19 @@ export function getTodoInputs(){
     const priority = document.getElementById("todo_priority").value
     const time = document.getElementById("todo_time").value
     return new Todo(Tname, priority, time)
+
 }
 
 export function addToTodos(event){
     event.preventDefault();
     const newtodo = getTodoInputs()
-    let actv = document.querySelectorAll('.project active')
-    actv.push(newtodo)
+    
+    
+    let project = document.getElementById('projectsDropdown').value
+    console.log(project)
+
     todo.push(newtodo)
     //console.log(newtodo)
     console.log(todo)
-    
+    newtodo.push(project)
 }

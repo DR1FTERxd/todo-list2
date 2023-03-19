@@ -5,10 +5,17 @@ import { addToTodos } from "./todo";
 
 
 
-const myProjects = [];
-console.log(todo)
+
+let myProjects = [];
+//console.log(todo)
 const addprjct = document.querySelector("#addBtn");
 addprjct.addEventListener("click", addToProjectList);
+
+let select = document.getElementById("projectsDropdown");
+
+
+
+
 
 
 export default class Project{
@@ -44,6 +51,11 @@ export function render() {
     for (let i=0; i<myProjects.length; i++){
        showing(myProjects[i])
    }
+   
+   let dd = document.getElementById("projectsDropdown");
+    dd.innerHTML = myProjects.map((item) =>
+    `<option value="${item.Dname}">${item.Dname}</option>`
+).join('');
 }
 
 
