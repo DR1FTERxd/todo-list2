@@ -1,8 +1,4 @@
-import Todo from "./todo";
 import { todo } from "./todo";
-import { getTodoInputs } from "./todo";
-import { addToTodos } from "./todo";
-
 
 
 
@@ -11,11 +7,11 @@ let myProjects = [];
 const addprjct = document.querySelector("#addBtn");
 addprjct.addEventListener("click", addToProjectList);
 
-let select = document.getElementById("projectsDropdown");
 
 
 
 
+const randomId = function(length = 6) { return Math. random(). toString(36)}
 
 
 export default class Project{
@@ -23,6 +19,7 @@ export default class Project{
         this.Dname = Dname
         this.description = description
         this.todo = todo;
+        //this.id = randomId(10)
         }
     
 }
@@ -36,10 +33,14 @@ export function getFromInput(){
 
 export function addToProjectList(event) {
     event.preventDefault();
+
     const newproject = getFromInput();
     myProjects.push(newproject)
     render()
+    
     console.log(myProjects)
+
+
 }
 
 
@@ -55,7 +56,7 @@ export function render() {
    let dd = document.getElementById("projectsDropdown");
     dd.innerHTML = myProjects.map((item) =>
     `<option value="${item.Dname}">${item.Dname}</option>`
-).join('');
+    ).join('');
 }
 
 

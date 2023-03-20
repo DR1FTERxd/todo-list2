@@ -1,6 +1,9 @@
+
 export let todo = [];
 const addtodo = document.querySelector("#addTodo");
 addtodo.addEventListener("click", addToTodos);
+
+
 
 export default class Todo {
     constructor(Tname, priority, time){
@@ -9,6 +12,13 @@ export default class Todo {
         this.time  = time
     }
 }
+
+
+
+
+
+
+
 
 export function getTodoInputs(){
     const Tname = document.getElementById("todo_name").value
@@ -22,12 +32,13 @@ export function addToTodos(event){
     event.preventDefault();
     const newtodo = getTodoInputs()
     
-    
-    let project = document.getElementById('projectsDropdown').value
-    console.log(project)
-
     todo.push(newtodo)
-    //console.log(newtodo)
-    console.log(todo)
-    newtodo.push(project)
+    const slct = document.getElementById('projectsDropdown').value
+    console.log(slct)
+
+
+    //console.log(todo)
+    //console.log(selectedProject)
+
+    
 }
