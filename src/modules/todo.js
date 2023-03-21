@@ -1,9 +1,9 @@
-
+import { getFromInput } from "./add-project";
 export let todo = [];
+
+
 const addtodo = document.querySelector("#addTodo");
 addtodo.addEventListener("click", addToTodos);
-
-
 
 export default class Todo {
     constructor(Tname, priority, time){
@@ -15,11 +15,6 @@ export default class Todo {
 
 
 
-
-
-
-
-
 export function getTodoInputs(){
     const Tname = document.getElementById("todo_name").value
     const priority = document.getElementById("todo_priority").value
@@ -27,18 +22,30 @@ export function getTodoInputs(){
     return new Todo(Tname, priority, time)
 
 }
-
+ export let newtodo = getTodoInputs()
 export function addToTodos(event){
     event.preventDefault();
-    const newtodo = getTodoInputs()
     
     todo.push(newtodo)
-    const slct = document.getElementById('projectsDropdown').value
-    console.log(slct)
 
-
-    //console.log(todo)
+    console.log(newtodo)
     //console.log(selectedProject)
-
+}
+export function push() {
     
+    let project = document.createElement('div')
+    project.addEventListener("click", function() {
+
+        var activeProject = document.querySelectorAll(".active");
+        for (var i = 0; i < activeProject.length; i++) {
+            activeProject[i].classList.remove("active");
+        }
+        project.classList.add("active");
+        });
+
+        if (project.classList.contains('active')){
+            getFromInput.push(todo)
+        }
+
+
 }
