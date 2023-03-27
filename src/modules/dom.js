@@ -10,7 +10,7 @@ const addtodo = document.querySelector("#addTodo");
 addtodo.addEventListener("click", addToTodos);
 
 const randomId = function(length = 6) { return Math. random(). toString(36)}
-const prctID = randomId(15)
+
 
 
 export function getTodoInputs(){
@@ -50,7 +50,7 @@ export default class Project {
     constructor(Dname, description){
         this.Dname = Dname
         this.description = description
-        this.id = prctID
+        this.id = randomId(15)
         }
 }
 

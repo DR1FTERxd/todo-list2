@@ -20,7 +20,11 @@ export default class Todo {
    // const priority = document.getElementById("todo_priority").value
   //  const time = document.getElementById("todo_time").value
   //  return new Todo(Tname, priority, time)
-
+  //const AddBtn = documcument.createElement('button')
+ // AddBtn.classList.add('btn btn-primary')
+ // AddBtn.setAttribute('modal', 'data-bs-toggle')
+ // AddBtn.setAttribute('#example2', 'data-bs-target')
+ // contentDiv.appendChild(AddBtn)
 ///}
 
 
