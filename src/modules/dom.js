@@ -13,27 +13,9 @@ const randomId = function(length = 6) { return Math. random(). toString(36)}
 
 
 
-export function getTodoInputs(){
-    const Tname = document.getElementById("todo_name").value
-    const priority = document.getElementById("todo_priority").value
-    const time = document.getElementById("todo_time").value
-    const projectSelect = document.getElementById("projectsDropdown");
-    
-    let projectId = projectSelect.value;
-    let selectedProject = myProjects.find(function(project) {
-        return project.id == projectId
-    });
-    if (selectedProject){
-        let todoID = selectedProject.todo.length + 1;
-        let todo = {id: todoID, Tname, priority, time };
-        selectedProject.todo.push(todo)
-        console.log("todo created", todo);
-        console.log('todos in a project', selectedProject.name + ":", selectedProject)
-    }
-    return new Todo(Tname, priority, time)
-}
 
-function populateSelectedProject() {
+
+export function populateSelectedProject() {
     let projectSelect = document.getElementById('projectsDropdown')
     projectSelect.innerHTML = "<option value=''>Select a project...</option>"
     myProjects.forEach(function(project){
@@ -46,32 +28,49 @@ function populateSelectedProject() {
 }
 
 
+
 export default class Project {
-    constructor(Dname, description){
+    constructor(Dname, description, todos=[]){
         this.Dname = Dname
         this.description = description
+        this.act = "inactive"
         this.id = randomId(15)
+        this.todos = todos
+        }
+
+        activate() {
+            this.act = 'active'
         }
 }
+export function getTodoInputs(){
+    const Tname = document.getElementById("todo_name").value
+    const priority = document.getElementById("todo_priority").value
+    const time = document.getElementById("todo_time").value
 
 
+     
+    return new Todo(Tname, priority, time)
+}
 export function addToTodos(event){
     event.preventDefault();
     newtodo = getTodoInputs();
-    
-    let slct = document.getElementById('projectsDropdown').value
-    console.log(slct)
+    const projectSelect = document.getElementById("projectsDropdown");
+    const selectedProjectId = projectSelect.value;
+    const selectedProject = myProjects.find(project => project.id === selectedProjectId);
+    selectedProject.todos.push(newtodo);
+    getTodoInputs()
     console.log(newtodo)
-    
 }
+
+
 
 export function getFromInput(){
      const Dname = document.getElementById("names").value
      const description = document.getElementById("description").value
 
-    return new Project(Dname, description)
+    return new Project(Dname, description,)
 }
-
+   
 export function addToProjectList(event) {
     event.preventDefault();
     const newproject = getFromInput();
