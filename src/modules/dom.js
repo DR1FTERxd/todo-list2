@@ -12,7 +12,7 @@ addtodo.addEventListener("click", addToTodos);
 const randomId = function(length = 6) { return Math. random(). toString(36)};
 
 export function populateSelectedProject() {
-    let projectSelect = document.getElementById('projectsDropdown').value
+    
     
 }
 
@@ -71,10 +71,10 @@ export function render() {
        showing(myProjects[i])
    }
    
-   //let dd = document.getElementById("projectsDropdown");
-   // dd.innerHTML = myProjects.map((item) =>
-   // `<option value="${item.Dname}">${item.Dname}</option>`
-    //).join('');
+   let dd = document.getElementById("projectsDropdown");
+    dd.innerHTML = myProjects.map((item) =>
+    `<option value="${item.Dname}">${item.Dname}</option>`
+    ).join('');
 }
 
 const contentDiv = document.querySelector('.content');
