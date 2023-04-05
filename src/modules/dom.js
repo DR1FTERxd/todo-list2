@@ -11,10 +11,7 @@ addtodo.addEventListener("click", addToTodos);
 
 const randomId = function(length = 6) { return Math. random(). toString(36)};
 
-export function populateSelectedProject() {
-    
-    
-}
+
 
 export default class Project {
     constructor(Dname, description, todos=[]){
@@ -24,6 +21,20 @@ export default class Project {
         this.todos = todos
         }
 }
+export function populateSelectedProject() {
+    let projectSelect = document.getElementById('projectsDropdown')
+    projectSelect.innerHTML = ""
+    myProjects.forEach(function(project){
+        let option = document.createElement("option")
+        option.value = project.id;
+        option.text = project.Dname;
+        option.description = project.description
+        projectSelect.add(option)
+
+
+        
+    })
+}
 
 export function getTodoInputs(){
     const Tname = document.getElementById("todo_name").value
@@ -32,6 +43,7 @@ export function getTodoInputs(){
  
     return new Todo(Tname, priority, time)
 }
+
 export function addToTodos(event){
     event.preventDefault();
     newtodo = getTodoInputs();
@@ -41,6 +53,7 @@ export function addToTodos(event){
     selectedProject.todos.push(newtodo);
     getTodoInputs()
     console.log(newtodo)
+    
 }
 
 export function getFromInput(){
@@ -56,6 +69,7 @@ export function addToProjectList(event) {
     myProjects.push(newproject)
     render()
     console.log(myProjects)
+    populateSelectedProject()
 }
 
 export function render() {
@@ -71,10 +85,10 @@ export function render() {
        showing(myProjects[i])
    }
    
-   let dd = document.getElementById("projectsDropdown");
-    dd.innerHTML = myProjects.map((item) =>
-    `<option value="${item.Dname}">${item.Dname}</option>`
-    ).join('');
+   //let dd = document.getElementById("projectsDropdown");
+   //dd.innerHTML = myProjects.map((item) =>
+    //`<option value="${item.Dname}">${item.Dname}</option>`
+   //).join('');
 }
 
 const contentDiv = document.querySelector('.content');
