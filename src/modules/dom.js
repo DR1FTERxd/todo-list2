@@ -1,5 +1,6 @@
-
+import { formatDistanceToNow, formatDistanceToNowStrict } from "date-fns";
 import Todo from "./todo";
+import { time } from "./todo";
 
 let myProjects = [];
 let newtodo;
@@ -44,7 +45,7 @@ export function getTodoInputs(){
     return new Todo(Tname, priority, time)
 }
 
-export function addToTodos(event){
+export function addToTodos(event, item){
     event.preventDefault();
     newtodo = getTodoInputs();
     let projectSelect = document.getElementById("projectsDropdown");
