@@ -12,7 +12,12 @@ export default class Todo {
 }
 
 
-
+export function time (item) {
+    const result = formatDistanceToNowStrict(
+        new Date(item.time)
+      )
+    console.log(result)
+}
 
 
 ////export function push() {

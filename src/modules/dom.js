@@ -52,6 +52,8 @@ export function addToTodos(event, item){
     const selectedProjectId = projectSelect.value;
     const selectedProject = myProjects.find(project => project.id === selectedProjectId);
     selectedProject.todos.push(newtodo);
+
+
     getTodoInputs()
     console.log(newtodo)
     
@@ -92,7 +94,7 @@ export function render() {
    //).join('');
 }
 
-const contentDiv = document.querySelector('.content');
+
 
 export function showing(item) {
     const projects = document.querySelector('.panel')
@@ -104,18 +106,34 @@ export function showing(item) {
     const todotime = document.createElement('h2')
     const clickableDivs = document.querySelectorAll('.project');
     
-    
-    nam.textContent = item.Dname
-    nam.classList.add("name")
-    project.appendChild(nam)
-
-    descript.textContent = item.description
-    descript.classList.add("description")
-    project.appendChild(descript)
-    
-    projects.appendChild(project)
-
+    nam.classList.add("name");
+    descript.classList.add("description");
+    projects.innerHTML = ''
     project.classList.add('project')
+    
+    myProjects.forEach(project => {
+        nam.textContent = `${project.Dname}`;
+        descript.textContent = `${project.description}`;
+        projects.appendChild(nam)
+        projects.appendChild(descript)
+
+    })
+
+    
+
+
+
+    //nam.textContent = item.Dname
+    //nam.classList.add("name")
+    //project.appendChild(nam)
+
+    //descript.textContent = item.description
+    //descript.classList.add("description")
+    //project.appendChild(descript)
+    
+    //projects.appendChild(project)
+
+ 
     project.setAttribute('id', myProjects.indexOf(item))
 
     clickableDivs.forEach((div) => {
