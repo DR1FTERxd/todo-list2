@@ -12,7 +12,7 @@ addtodo.addEventListener("click", addToTodos);
 
 const randomId = function(length = 6) { return Math. random(). toString(36)};
 
-
+const contentDiv = document.querySelector('.content');
 
 export default class Project {
     constructor(Dname, description, todos=[]){
@@ -22,6 +22,7 @@ export default class Project {
         this.todos = todos
         }
 }
+
 export function populateSelectedProject() {
     let projectSelect = document.getElementById('projectsDropdown')
     projectSelect.innerHTML = ""
@@ -55,7 +56,7 @@ export function addToTodos(event, item){
 
 
     getTodoInputs()
-    console.log(newtodo)
+    //console.log(newtodo)
     
 }
 
@@ -77,7 +78,7 @@ export function addToProjectList(event) {
 
 export function render() {
     
-    const display = document.querySelector('.panel');
+    const display = document.querySelector('.panelprjt');
     
     let projects = document.querySelectorAll('.project');
     projects.forEach(project => display.removeChild(project))
@@ -88,74 +89,56 @@ export function render() {
        showing(myProjects[i])
    }
    
-   //let dd = document.getElementById("projectsDropdown");
-   //dd.innerHTML = myProjects.map((item) =>
-    //`<option value="${item.Dname}">${item.Dname}</option>`
-   //).join('');
+
 }
 
-
-
 export function showing(item) {
-    const projects = document.querySelector('.panel')
-    let project = document.createElement('div')
-    const nam = document.createElement("h2")
-    const descript = document.createElement("h4")
-    const todoName = document.createElement('h2')
-    const todoPriority = document.createElement('h2')
-    const todotime = document.createElement('h2')
-    const clickableDivs = document.querySelectorAll('.project');
+    const projects = document.querySelector('.panelprjt');
+    let project = document.createElement('div');
+    const nam = document.createElement("h2");
+    const descript = document.createElement("h4");
     
-    nam.classList.add("name");
-    descript.classList.add("description");
-    projects.innerHTML = ''
-    project.classList.add('project')
-    
-    myProjects.forEach(project => {
-        nam.textContent = `${project.Dname}`;
-        descript.textContent = `${project.description}`;
-        projects.appendChild(nam)
-        projects.appendChild(descript)
-
-    })
-
     
 
-
-
-    //nam.textContent = item.Dname
-    //nam.classList.add("name")
-    //project.appendChild(nam)
-
-    //descript.textContent = item.description
-    //descript.classList.add("description")
-    //project.appendChild(descript)
+    nam.textContent = item.Dname;
+    nam.classList.add("projectName");
+    project.appendChild(nam);
+  
+    descript.textContent = item.description;
+    descript.classList.add("projectDescription");
+    project.appendChild(descript);
+  
+    projects.appendChild(project);
+  
+    project.classList.add('project');
+    project.setAttribute('id', myProjects.indexOf(item));
+  
+    projects.addEventListener('click', (event) => {
+        const clickableDiv = event.target.closest('.project');
+        if (clickableDiv) {
+          const clickableDivs = document.querySelectorAll('.project');
+          clickableDivs.forEach((div) => {
+            div.classList.remove('active');
+          });
     
-    //projects.appendChild(project)
-
- 
-    project.setAttribute('id', myProjects.indexOf(item))
-
-    clickableDivs.forEach((div) => {
-    div.addEventListener('click', () => {
-    clickableDivs.forEach((div) => {
-      div.classList.remove('active');
-    });
-    div.classList.add('active');
-    const contentId = div.getAttribute('id');
-    //contentDiv.innerHTML = `${}`;
-  });
-});
-   // todoName.textContent = item.Tname
-   // todoName.classList.add('todoName')
-  //  contentDiv.appendChild(todoName)
-    
-   /// todoPriority.textContent = item.priority
-   // todoPriority.classList.add('todoPriority')
-   // contentDiv.appendChild(todoPriority)
-    
-   // todotime.textContent = item.time
-   //todotime.classList.add('todotime')
-    //contentDiv.appendChild(todotime)
-
+          clickableDiv.classList.add('active');
+          
+          const selectedProjectId = clickableDiv.getAttribute('id');
+          const selectedProject = myProjects[selectedProjectId];
+          contentDiv.innerHTML = '';
+          selectedProject.todos.forEach(todo => {
+            const todoElement = document.createElement('div');
+            const result = formatDistanceToNowStrict(
+                new Date(todo.time)
+              )
+            todoElement.classList.add("todo");
+            todoElement.innerHTML = `
+              <div class="todoName">${todo.Tname}</div>
+              <div class="todoPriority">${todo.priority}</div>
+              <div class="todoTime">${result}</div>
+            `;
+            contentDiv.appendChild(todoElement);
+          });
+        }
+      });
 }

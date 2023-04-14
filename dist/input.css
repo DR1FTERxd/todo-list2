@@ -3,6 +3,7 @@ body{
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     font-family: 'Signika Negative', sans-serif;;
+    height: 100%;
 }
 
 .header{
@@ -20,18 +21,8 @@ body{
     height: 4vh;
 }
 
-
-    
-
-
-
-
-
-
-
-
 .panel{
-    position: fixed;
+    float: left;
     width: 30vw;
     height: 100vh;
     background-color: rgb(255, 255, 255);
@@ -42,7 +33,10 @@ body{
     padding-left: 0;
     gap: 3vh;
 }
-
+/*.panelprjt{
+    overflow-y: scroll;
+    height: 100%;
+}*/
 .content{
     width: 70vh;
     float: right;
