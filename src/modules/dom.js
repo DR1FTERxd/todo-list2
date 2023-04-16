@@ -83,12 +83,9 @@ export function render() {
     let projects = document.querySelectorAll('.project');
     projects.forEach(project => display.removeChild(project))
 
-
-
     for (let i=0; i<myProjects.length; i++){
        showing(myProjects[i])
    }
-   
 
 }
 
@@ -97,7 +94,6 @@ export function showing(item) {
     let project = document.createElement('div');
     const nam = document.createElement("h2");
     const descript = document.createElement("h4");
-    
     
 
     nam.textContent = item.Dname;

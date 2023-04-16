@@ -4,48 +4,63 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-family: 'Signika Negative', sans-serif;;
     height: 100%;
+    background-color: rgb(202, 202, 202);
 }
 
 .header{
     display: flex;
     flex-direction: row;
-    background-color: rgb(189, 189, 189);
     align-items: center;
 }
 #name{
     font-size: larger;
 }
 
+.screen{
+    display: flex;
+}
 #open{
-    
     height: 4vh;
 }
 
 .panel{
-    float: left;
-    width: 30vw;
+    width: 20vw;
     height: 100vh;
-    background-color: rgb(255, 255, 255);
+    background-color: darkgray;
     font-size: xx-large;
     display: flex;
     flex-direction: column;
     list-style-type: none; 
-    padding-left: 0;
+    padding: 30px 50px;
     gap: 3vh;
+    overflow-y: scroll;
 }
+.panel::-webkit-scrollbar {
+    display: none;
+  }
 /*.panelprjt{
     overflow-y: scroll;
     height: 100%;
 }*/
 .content{
-    width: 70vh;
-    float: right;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(185, 185, 185);
+    padding: 100px;
 }
-
-.panel p {
-    margin: 35px;
+.todo{
+    padding: 5px;
+    display: flex;
+    margin: 5px;
+    gap: 20px;
+    font-size: 35px
+}
+.panel b {
+    
     display: flex;
     align-items: center;
+    padding-left: 32px;
 }
 
 #icons {
