@@ -43,7 +43,6 @@ export function getTodoInputs(){
     return new Todo(Tname, priority, time)
 }
 
-
 export function addToTodos(event){
     event.preventDefault();
     newtodo = getTodoInputs();
@@ -52,6 +51,7 @@ export function addToTodos(event){
     const selectedProject = myProjects.find(project => project.id === selectedProjectId);
     selectedProject.todos.push(newtodo);
     getTodoInputs()
+    storeProjects();
 }
 
 export function getFromInput(){
@@ -63,34 +63,33 @@ export function getFromInput(){
    
 export function addToProjectList (event) {
     const newproject = getFromInput();
-    myProjects.push(newproject)
-    render()
-    console.log(myProjects)
-    populateSelectedProject()
-    localStorage.setItem('projects', JSON.stringify(myProjects))
+    myProjects.push(newproject);
+    console.log(myProjects);
+    populateSelectedProject();
+    storeProjects();
+    render();
     event.preventDefault();
+ 
 }
 
 export function render() {
-    
     const display = document.querySelector('.panelprjt');
     
     let projects = document.querySelectorAll('.project');
     projects.forEach(project => display.removeChild(project))
 
     for (let i=0; i<myProjects.length; i++){
-       showing(myProjects[i])
+       showing(myProjects[i] )
    }
-
 }
 
 export function showing(item) {
   const projects = document.querySelector('.panelprjt');
-  let project = document.createElement('div');
   const nam = document.createElement("h2");
   const descript = document.createElement("h4");
-  var storedNames = JSON.parse(localStorage.getItem("projects"))
- 
+  let project = document.createElement('div');
+
+  
   nam.textContent = item.Dname;
   nam.classList.add("projectName");
   project.appendChild(nam);
@@ -134,7 +133,22 @@ export function showing(item) {
           contentDiv.appendChild(todoElement);
         });
       }
-    });   
+    });
+}
+
+function storeProjects() {
+  localStorage.setItem("myProjects", JSON.stringify(myProjects))
+}
+function loadProjectsFromStorage() {
+  if (myProjects.length === 0) {
+    const storedProjects = localStorage.getItem("myProjects");
+    if (storedProjects) {
+        myProjects = JSON.parse(storedProjects);
+    }
+}
 }
 
 
+loadProjectsFromStorage()
+render();
+storeProjects();
